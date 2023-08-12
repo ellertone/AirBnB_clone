@@ -1,0 +1,8 @@
+# Ignore .idea and .vscode directories
+.idea/
+.vscode/
+
+# Ignore .sh files in parent, child, and second child directories
+/*.sh
+/*/*.sh
+/*/*/*.sh
