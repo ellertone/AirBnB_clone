@@ -12,7 +12,7 @@ class FileStorage:
     Controls the storage process of created objects to json
     """
 
-    __file_storage = "file.json"
+    __file_path = "../../file.json"
     __objects = {}
 
     def all(self):
@@ -25,14 +25,20 @@ class FileStorage:
         FileStorage.__objects[key] = obj
 
     def save(self):
-        """Saves the created object to json format"""
-        with open(FileStorage.__file_storage, mode="w", encoding="UTF8") as file:
-            json.dump(FileStorage.__objects, file)
+        """Serialize __objects to the JSON file __file_path."""
+        odict = FileStorage.__objects
+        objdict = {obj: odict[obj].to_dict() for obj in odict.keys()}
+        with open(FileStorage.__file_path, "w") as f:
+            json.dump(objdict, f)
 
     def reload(self):
-        """Loads the objects stored in the json file back into the dictionary if it exists"""
-        if os.path.isfile(FileStorage.__file_storage) and os.access(
-            FileStorage.__file_storage, os.R_OK
-        ):
-            with open(FileStorage.__file_storage, mode="r", encoding="UTF8") as file:
-                FileStorage.__objects = json.load(file)
+        """Deserialize the JSON file __file_path to __objects, if it exists."""
+        try:
+            with open(FileStorage.__file_path) as file:
+                objdict = json.load(file)
+                for o in objdict.values():
+                    cls_name = o["__class__"]
+                    del o["__class__"]
+                    self.new(eval(file.jsoncls_name)(**o))
+        except FileNotFoundError:
+            return
