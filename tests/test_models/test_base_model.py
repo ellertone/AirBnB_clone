@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 #!/usr/bin/python3
+=======
+>>>>>>> e56bf55 (storage engine)
 """Defines unittests for models/base_model.py.
 
 Unittest classes:
@@ -49,6 +52,7 @@ class TestBaseModel_instantiation(unittest.TestCase):
         bm2 = BaseModel()
         self.assertLess(bm1.updated_at, bm2.updated_at)
 
+<<<<<<< HEAD
     def test_str_representation(self):
         dt = datetime.today()
         dt_repr = repr(dt)
@@ -60,6 +64,8 @@ class TestBaseModel_instantiation(unittest.TestCase):
         self.assertIn("'id': '123456'", bmstr)
         self.assertIn("'created_at': " + dt_repr, bmstr)
         self.assertIn("'updated_at': " + dt_repr, bmstr)
+=======
+>>>>>>> e56bf55 (storage engine)
 
     def test_args_unused(self):
         bm = BaseModel(None)
@@ -92,18 +98,30 @@ class TestBaseModel_save(unittest.TestCase):
     @classmethod
     def setUp(self):
         try:
+<<<<<<< HEAD
             os.rename("file.json", "tmp")
+=======
+            os.rename("../../models/engine/file.json", "tmp")
+>>>>>>> e56bf55 (storage engine)
         except IOError:
             pass
 
     @classmethod
     def tearDown(self):
         try:
+<<<<<<< HEAD
             os.remove("file.json")
         except IOError:
             pass
         try:
             os.rename("tmp", "file.json")
+=======
+            os.remove("../../models/engine/file.json")
+        except IOError:
+            pass
+        try:
+            os.rename("tmp", "../../models/engine/file.json")
+>>>>>>> e56bf55 (storage engine)
         except IOError:
             pass
 
@@ -130,6 +148,7 @@ class TestBaseModel_save(unittest.TestCase):
         with self.assertRaises(TypeError):
             bm.save(None)
 
+<<<<<<< HEAD
     def test_save_updates_file(self):
         bm = BaseModel()
         bm.save()
@@ -137,6 +156,8 @@ class TestBaseModel_save(unittest.TestCase):
         with open("file.json", "r") as f:
             self.assertIn(bmid, f.read())
 
+=======
+>>>>>>> e56bf55 (storage engine)
 
 class TestBaseModel_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the BaseModel class."""
