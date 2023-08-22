@@ -12,7 +12,7 @@ class FileStorage:
     Controls the storage process of created objects to json
     """
 
-    __file_path = "../../file.json"
+    __file_path = "./file.json"
     __objects = {}
 
     def all(self):

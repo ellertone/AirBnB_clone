@@ -1,5 +1,7 @@
 #!/usr/bin/python3
+
 """Defines the HBnB console."""
+
 import cmd
 import re
 from shlex import split
@@ -33,6 +35,7 @@ def parse(arg):
 
 class HBNBCommand(cmd.Cmd):
     """Defines the HolbertonBnB command interpreter.
+
     Attributes:
         prompt (str): The command prompt.
     """
@@ -53,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def default(self, arg):
-        """Default behavior for cmd module when input is invalid"""
+        """Default behavior for cmd module when input is invalid."""
         argdict = {
             "all": self.do_all,
             "show": self.do_show,
@@ -207,3 +210,4 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
+
